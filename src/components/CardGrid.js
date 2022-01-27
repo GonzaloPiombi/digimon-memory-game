@@ -1,5 +1,4 @@
 import Card from './Card';
-import uniqid from 'uniqid';
 
 const CardGrid = (props) => {
   return props.imagesInformation.map((item) => {
