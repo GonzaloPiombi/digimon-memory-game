@@ -21,8 +21,22 @@ function App() {
       setCurrentScore(currentScore + 1);
       const newArr = [...digimons];
       newArr.find((item) => item === digimon).isClicked = true;
-      setDigimons(newArr);
+      setDigimons(shuffleDigimons(newArr));
     }
+  };
+
+  const shuffleDigimons = (arr) => {
+    let currentItem = arr.length;
+    let randomItem;
+
+    while (currentItem !== 0) {
+      randomItem = Math.floor(Math.random() * currentItem);
+      currentItem--;
+
+      [arr[currentItem], arr[randomItem]] = [arr[randomItem], arr[currentItem]];
+    }
+
+    return arr;
   };
 
   useEffect(() => {
