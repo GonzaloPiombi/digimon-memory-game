@@ -1,9 +1,9 @@
 import Card from './Card';
-import imagesInformation from './ImagesInfo';
+import uniqid from 'uniqid';
 
 const CardGrid = (props) => {
-  return imagesInformation.map((item) => {
-    return <Card digimon={item} onClick={props.onClick} />;
+  return props.imagesInformation.map((item) => {
+    return <Card key={item.id} digimon={item} onClick={props.onClick} />;
   });
 };
 

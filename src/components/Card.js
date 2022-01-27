@@ -1,12 +1,10 @@
 const Card = (props) => {
-  console.log(props.digimon);
   return (
     <div
-      key={props.digimon.id}
       className="image-container"
-      onClick={props.onClick}
+      onClick={() => props.onClick(props.digimon)}
     >
-      <img src={props.digimon.url} alt={props.digimon.name} />
+      <img draggable="false" src={props.digimon.url} alt={props.digimon.name} />
       <p>{props.digimon.name}</p>
     </div>
   );
