@@ -8,7 +8,18 @@ import './App.css';
 function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [digimons, setDigimons] = useState(imagesInformation);
+  const [digimons, setDigimons] = useState([]);
+
+  useEffect(() => {
+    setDigimons(shuffleDigimons(imagesInformation));
+  }, []);
+
+  useEffect(() => {
+    if (currentScore === 12) {
+      //TODO Update screen to announce player's victory.
+      console.log('Winner');
+    }
+  }, [currentScore]);
 
   const handleCardClick = (digimon) => {
     if (digimon.isClicked) {
@@ -38,13 +49,6 @@ function App() {
 
     return arr;
   };
-
-  useEffect(() => {
-    if (currentScore === 12) {
-      //TODO Update screen to announce player's victory.
-      console.log('Winner');
-    }
-  }, [currentScore]);
 
   return (
     <div>
