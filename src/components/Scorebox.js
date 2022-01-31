@@ -1,8 +1,8 @@
 const Scorebox = (props) => {
   return (
-    <div>
-      <h2>{props.bestScore}</h2>
-      <h2>{props.currentScore}</h2>
+    <div className="scorebox">
+      <h2>Best Score: {props.bestScore}</h2>
+      <h2>Current Score: {props.currentScore}</h2>
     </div>
   );
 };
