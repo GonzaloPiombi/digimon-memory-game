@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(59, 93, 187);
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+  padding: 1%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 2.3rem;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: 3% 0 0;
+}
+
+img {
+  width: inherit;
+}
+
+.scorebox {
+  background-color: white;
+  border: solid 5px black;
+  border-radius: 10px;
+  width: max-content;
+  padding: 3%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 10px;
+}
+
+.image-container {
+  background-color: #fff;
+  border: solid 10px #000;
+  border-radius: 10px;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 200px;
+  transition: ease-in-out 100ms;
+}
+
+.image-container:hover {
+  border-color: #9e6ac5;
+  transform: scale(1.04);
+}
+
+.winner-container {
+  background-color: #efefef;
+  border: solid 5px black;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 5% auto auto;
+  padding: 2%;
+  width: fit-content;
 }
 
-.App-link {
-  color: #61dafb;
+.winner-container h1 {
+  font-size: 4rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.winner-container button {
+  background-color: #4ba53b;
+  border: solid 2px black;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 10%;
+  padding: 4%;
+}
+
+.winner-container button:hover {
+  background-color: #408a33;
+}
+
+@media (max-width: 500px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
   }
 }
