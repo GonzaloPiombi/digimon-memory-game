@@ -30,8 +30,8 @@ function App() {
       setLevel(level + 1);
     }
     if (currentScore === imagesInformation.length) {
-      //TODO Update screen to announce player's victory.
-      console.log('Winner');
+      setBestScore(currentScore);
+      displayWinner();
     }
   }, [currentScore]);
 
@@ -49,6 +49,30 @@ function App() {
       newArr.find((item) => item === digimon).isClicked = true;
       setDigimons(shuffleDigimons(newArr));
     }
+  };
+
+  const displayWinner = () => {
+    const container = document.createElement('div');
+    const winnerMessage = document.createElement('h1');
+    const playAgainButton = document.createElement('button');
+
+    container.classList.add('winner-container');
+
+    winnerMessage.textContent = 'You win!';
+    playAgainButton.textContent = 'Play again!';
+
+    playAgainButton.addEventListener('click', () => {
+      setCurrentScore(0);
+      setLevel(1);
+      const newArr = [...digimons];
+      newArr.map((item) => (item.isClicked = false));
+      setDigimons(newArr);
+      container.remove();
+    });
+
+    document.body.appendChild(container);
+    container.appendChild(winnerMessage);
+    container.appendChild(playAgainButton);
   };
 
   const shuffleDigimons = (arr) => {
