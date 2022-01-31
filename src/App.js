@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import Scorebox from './components/Scorebox';
 import CardGrid from './components/CardGrid';
 import imagesInformation from './components/ImagesInfo';
 import './App.css';
@@ -9,13 +8,28 @@ function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [digimons, setDigimons] = useState([]);
+  const [level, setLevel] = useState(0);
+  const [partialScore, setPartialScore] = useState(0);
 
   useEffect(() => {
     setDigimons(shuffleDigimons(imagesInformation));
   }, []);
 
   useEffect(() => {
-    if (currentScore === 12) {
+    if (level === 1) {
+      setPartialScore(8);
+    } else if (level === 2) {
+      setPartialScore(24);
+    } else {
+      setPartialScore(48);
+    }
+  }, [level]);
+
+  useEffect(() => {
+    if (currentScore === partialScore) {
+      setLevel(level + 1);
+    }
+    if (currentScore === imagesInformation.length) {
       //TODO Update screen to announce player's victory.
       console.log('Winner');
     }
@@ -25,6 +39,7 @@ function App() {
     if (digimon.isClicked) {
       setBestScore(currentScore > bestScore ? currentScore : bestScore);
       setCurrentScore(0);
+      setLevel(1);
       const newArr = [...digimons];
       newArr.map((item) => (item.isClicked = false));
       setDigimons(newArr);
@@ -52,10 +67,13 @@ function App() {
 
   return (
     <div>
-      <Header />
-      <Scorebox currentScore={currentScore} bestScore={bestScore} />
+      <Header currentScore={currentScore} bestScore={bestScore} />
       <div className="grid">
-        <CardGrid imagesInformation={digimons} onClick={handleCardClick} />
+        <CardGrid
+          imagesInformation={digimons}
+          onClick={handleCardClick}
+          level={level}
+        />
       </div>
     </div>
   );
